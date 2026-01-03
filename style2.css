@@ -1,0 +1,473 @@
+/* --- SETUP & VARIABEL --- */
+:root {
+    /* Palet Warna Chic & Mahal */
+    --bg-cream: #fffdf9; /* Warna dasar krim */
+    --pink-dusty: #e6a4b4; /* Pink berdebu */
+    --pink-deep: #d63384; /* Hot pink tua untuk aksen */
+    --gold-accent: #d4af37; /* Warna emas */
+    --text-dark: #2c2c2c; /* Hitam lembut */
+    --text-light: #666666;
+    
+    /* Font */
+    --font-serif: 'Playfair Display', serif; /* Untuk Judul Besar */
+    --font-script: 'Dancing Script', cursive; /* Untuk aksen tulisan tangan */
+    --font-body: 'Lora', serif; /* Untuk teks bacaan */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-cream);
+    /* Latar belakang tekstur kertas halus */
+    background-image: linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM32 63c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm57-13c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23e6a4b4' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* --- UTILITAS CHIC --- */
+.scrapbook-container {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.9); /* Layer transparan di atas background */
+    box-shadow: 0 0 50px rgba(230, 164, 180, 0.2);
+    margin-top: -30px; /* Overlap dengan header */
+    position: relative;
+    z-index: 10;
+    border: 1px solid #fff;
+}
+
+.chic-section {
+    padding: 50px 0;
+    border-bottom: 2px dashed var(--pink-dusty); /* Garis putus-putus antar section */
+}
+
+.chic-section:last-child {
+    border-bottom: none;
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: 1.rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.script-accent {
+    font-family: var(--font-script);
+    color: var(--pink-deep);
+    font-weight: normal;
+}
+
+.paper-texture {
+    background-color: #fff;
+    padding: 30px;
+    border: 1px solid #f0e6e8;
+    /* Efek kertas bertumpuk */
+    box-shadow: 5px 5px 0px rgba(230, 164, 180, 0.2), 
+                10px 10px 0px rgba(230, 164, 180, 0.1);
+    position: relative;
+}
+
+/* Efek selotip di ujung kertas */
+.paper-texture::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 2;
+}
+
+/* --- HEADER --- */
+.main-header {
+    background: linear-gradient(135deg, #ffe4e9 0%, #fff0f5 100%);
+    padding: 40px 20px 100px; /* Padding bawah besar untuk overlap */
+    text-align: center;
+    position: relative;
+    border-bottom: 3px solid var(--gold-accent);
+}
+
+.brand-script {
+    font-family: var(--font-script);
+    font-size: 1.5rem;
+    color: var(--pink-deep);
+    margin-bottom: 20px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    font-family: var(--font-serif);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    position: relative;
+    transition: 0.3s;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--pink-deep);
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.hero-title h1 {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+
+.script-highlight {
+    font-family: var(--font-script);
+    color: var(--pink-deep);
+    font-size: 2.8rem;
+    display: block;
+    margin-top: 10px;
+    text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
+}
+
+/* --- SECTION 1: PROFIL (Gaya Majalah) --- */
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.ornate-frame {
+    flex: 1;
+    position: relative;
+    padding: 15px;
+    /* Bingkai ganda */
+    border: 2px solid var(--gold-accent);
+    outline: 5px solid var(--pink-dusty);
+    outline-offset: 5px;
+    background: #fff;
+    transform: rotate(-3deg); /* Sedikit miring ala scrapbook */
+    transition: 0.3s;
+}
+
+.ornate-frame:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+.ornate-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: sepia(20%); /* Sedikit efek vintage */
+}
+
+.profile-content {
+    flex: 1.5;
+    transform: rotate(2deg); /* Miring berlawanan */
+}
+
+.intro-text {
+    font-size: 1.rem;
+    color: var(--text-light);
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.designer-details h3 {
+    font-family: var(--font-serif);
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--pink-dusty);
+    display: inline-block;
+}
+
+.designer-details ul {
+    list-style: none;
+}
+
+.designer-details li {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted #eee;
+    padding-bottom: 5px;
+}
+
+.designer-details .label {
+    font-weight: bold;
+    font-family: var(--font-serif);
+    color: var(--pink-deep);
+}
+
+.signature {
+    font-family: var(--font-script);
+    font-size: 1.5rem;
+    text-align: right;
+    margin-top: 30px;
+    color: var(--pink-deep);
+}
+
+/* --- SECTION 2: PERANGKAT (Gaya Zigzag) --- */
+.subtitle-script {
+    font-family: var(--font-script);
+    font-size: 1.8rem;
+    color: var(--pink-dusty);
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+/* Baris Perangkat */
+.device-row {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+/* Garis penghubung dekoratif antar row */
+.device-row:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    width: 2px;
+    height: 40px;
+    background-color: var(--pink-dusty);
+    /* Hiasan titik di tengah garis */
+    background-image: radial-gradient(circle, var(--gold-accent) 3px, transparent 3px);
+    background-size: 10px 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Membalik urutan untuk baris genap (Switch) */
+.device-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.device-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.visual-circle {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    border: 3px solid #fff;
+}
+
+/* Hiasan Glitter/Emas di sekeliling lingkaran */
+.pink-glitter {
+    background: linear-gradient(45deg, var(--pink-dusty), #ffcdd2);
+    box-shadow: 0 0 0 5px var(--pink-dusty), 
+                0 0 20px var(--pink-deep);
+}
+
+.gold-accent {
+    background: linear-gradient(45deg, var(--gold-accent), #ffe082);
+    box-shadow: 0 0 0 5px var(--gold-accent), 
+                0 0 20px var(--gold-accent);
+}
+
+.device-desc {
+    flex: 2;
+}
+
+.device-desc h3 {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--pink-deep);
+    margin-bottom: 15px;
+}
+
+.chic-list {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.chic-list li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+/* Bullet point bentuk hati kecil */
+.chic-list li::before {
+    content: '❤';
+    color: var(--pink-deep);
+    font-size: 12px;
+    position: absolute;
+    left: 0;
+    top: 4px;
+}
+
+/* --- SECTION 3: HOSTING (Gaya Undangan) --- */
+.invitation-box {
+    background: #fff;
+    padding: 40px 30px;
+    text-align: center;
+    border: 4px double var(--pink-dusty);
+    position: relative;
+    max-width: 650px;
+    margin: 0 auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+/* Pita Hiasan di atas dan bawah box */
+.ribbon-top, .ribbon-bottom {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 30px;
+    background-color: var(--pink-deep);
+    z-index: 2;
+}
+
+.ribbon-top { top: -15px; }
+.ribbon-bottom { bottom: -15px; }
+
+/* Ujung pita berbentuk V */
+.ribbon-top::before, .ribbon-top::after,
+.ribbon-bottom::before, .ribbon-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid var(--pink-deep);
+}
+.ribbon-top::before { left: 0; }
+.ribbon-top::after { right: 0; }
+.ribbon-bottom::before { top: -10px; border-bottom: 15px solid var(--pink-deep); border-top: none; left: 0; }
+.ribbon-bottom::after { top: -10px; border-bottom: 15px solid var(--pink-deep); border-top: none; right: 0; }
+
+
+.hosting-intro {
+    font-size: 1.1rem;
+    margin: 30px auto;
+    max-width: 600px;
+}
+
+.chic-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.btn-chic {
+    text-decoration: none;
+    padding: 12px 30px;
+    font-family: var(--font-serif);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: var(--pink-deep);
+    border: 2px solid var(--pink-deep);
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-chic.filled, .btn-chic:hover {
+    background-color: var(--pink-deep);
+    color: #fff;
+}
+
+.resource-note {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+    border-color: var(--gold-accent);
+    background: #fffdf9;
+}
+
+.resource-note h4 {
+    font-family: var(--font-serif);
+    color: var(--gold-accent);
+    margin-bottom: 10px;
+}
+
+/* --- FOOTER --- */
+.chic-footer {
+    text-align: center;
+    padding: 50px 20px;
+    margin-top: 50px;
+    border-top: 3px solid var(--gold-accent);
+    background: linear-gradient(to bottom, #fff0f5, #ffe4e9);
+}
+
+.brand-script.small {
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+/* RESPONSIVE (Agar rapi di HP) */
+@media (max-width: 768px) {
+    .hero-title h1 { font-size: 2.5rem; }
+    .script-highlight { font-size: 3rem; }
+    
+    .profile-section {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .ornate-frame, .profile-content {
+        transform: none; /* Hilangkan efek miring di HP */
+        width: 100%;
+    }
+    
+    .device-row, .device-row.reverse {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .device-row::after { display: none; /* Hilangkan garis penghubung di HP */ }
+
+    .visual-circle {
+        width: 120px;
+        height: 120px;
+        font-size: 3rem;
+    }
+
+    .chic-list {
+        display: inline-block; /* Agar bullet point rapi saat text-center */
+        text-align: left;
+    }
+}
